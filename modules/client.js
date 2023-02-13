@@ -30,14 +30,14 @@ function deldata(){
 	socket.emit('delete','all');
 }
 
-$.ajax({
-	url: "172.31.2.220:3000/file",
-	type: 'GET',
-	success: function(res) {
-		console.log(res);
-		alert(res);
-	}
-});
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open("GET", theUrl, false); // true for asynchronous 
+    xmlHttp.send(null);
+	return xmlHttp.responseText;
+}
 /*
 
 socket.on('load',function(data){
