@@ -1,3 +1,4 @@
+var app = express();
 var socket=io();
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
@@ -29,6 +30,15 @@ function func(){
 function deldata(){
 	socket.emit('delete','all');
 }
+
+$.ajax({
+	url: "172.31.2.220:3000/file",
+	type: 'GET',
+	success: function(res) {
+		console.log(res);
+		alert(res);
+	}
+});
 /*
 
 socket.on('load',function(data){
@@ -71,6 +81,11 @@ function alertFilename(file)
 	socket.emit("upload", {File:files[0], Name:value, Category: category}, (status) => {
 	  console.log(status);
 	});
+  }
+
+  function download(fileId)
+  {
+	app
   }
 
 
