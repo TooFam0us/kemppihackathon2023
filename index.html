@@ -35,10 +35,11 @@
 	<script src="/socket.io/socket.io.js"></script> 
 	<script src="client.js"></script>
 	<script>
-		    function alertFilename()
-            {
-                var thefile = document.getElementById('fileInput');
-				var strippedFile = thefile.value.replace('C:\\fakepath\\', ' ');
+		let strippedFile;
+		function alertFilename()
+		{
+			var thefile = document.getElementById('fileInput');
+			strippedFile = thefile.value.replace('C:\\fakepath\\', ' ');
             }
 	</script>
 </body>
