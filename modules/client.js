@@ -1,9 +1,8 @@
 var socket=io();
 
-var download = document.getElementById('download');
+var dl = document.getElementById('download');
 var download2 = document.getElementById('download2');
-console.log(download);
-download.addEventListener('click',function() {httpGet("file","a")});
+dl.addEventListener('click',function() {httpGet("file","a")});
 download2.addEventListener('click',function() {httpGet("file","b")});
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
