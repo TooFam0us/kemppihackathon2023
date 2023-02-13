@@ -7,7 +7,7 @@ const {Server}=require("socket.io");
 const io =new Server(server);
 const {MongoClient} = require('mongodb');
 
-const url ='mongodb://localhost:27017'
+const url ='mongodb://127.0.0.1:27017'
 const client= new MongoClient(url)
 const dbname='chat';
 
@@ -19,6 +19,8 @@ app.get('/',(req,res)=>{
 
 
 async function main(){
+
+	console.log("abef");
 	await client.connect();
 	console.log('mongo connection');
 	const db =client.db(dbname);
