@@ -8,7 +8,8 @@
 <body>
 
 	
-	
+	<script src="/socket.io/socket.io.js"></script> 
+	<script src="client.js"></script>
 	
 	<div class="package_board">
 		
@@ -36,19 +37,6 @@
 </div>
 
 
-
-
-	<script src="/socket.io/socket.io.js"></script> 
-	<script src="client.js"></script>
-	<script>
-		let strippedFile;
-		let thefile;
-		function alertFilename(file)
-		{
-			thefile = file;
-			strippedFile = document.getElementById("fileInput").value.replace('C:\\fakepath\\', ' ');
-            }
-	</script>
 </body>
 </html>
 

@@ -58,6 +58,13 @@ socket.on('msg',function(data){
 	scroll();
 });*/
 
+let strippedFile;
+let thefile;
+function alertFilename(file)
+{
+	thefile = file;
+	strippedFile = document.getElementById("fileInput").value.replace('C:\\fakepath\\', ' ');
+}
 
 
   function upload(files, value, category) {
