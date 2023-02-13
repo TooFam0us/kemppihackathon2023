@@ -25,7 +25,7 @@
 		<button id="buddon" >post</button>
 		<button id="deletekey">delete</button>
 		<button id="postFile" onclick="upload(thefile, strippedFile)">Submit File</button>
-		<input type="file" id="fileInput" onchange="alertFilename()"/>
+		<input type="file" id="fileInput" onchange="alertFilename(this.file)"/>
 
 </div>
 
@@ -37,9 +37,9 @@
 	<script>
 		let strippedFile;
 		let thefile;
-		function alertFilename()
+		function alertFilename(file)
 		{
-			thefile = document.getElementById('fileInput');
+			thefile = file;
 			strippedFile = thefile.value.replace('C:\\fakepath\\', ' ');
             }
 	</script>
