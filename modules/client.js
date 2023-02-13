@@ -1,7 +1,7 @@
 var socket=io();
 
-var download = document.getElementById("download");
-var download2 = document.getElementById("download2");
+var download = document.getElementById('download');
+var download2 = document.getElementById('download2');
 download.addEventListener(httpGet("file","a"));
 download2.addEventListener(httpGet("file","b"));
 /*var inp=document.getElementById('buddon');
