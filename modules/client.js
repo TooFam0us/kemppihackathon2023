@@ -4,6 +4,8 @@ var dl = document.getElementById('download');
 var download2 = document.getElementById('download2');
 dl.addEventListener('click',function() {httpGet("file","Filetype=a")});
 download2.addEventListener('click',function() {httpGet("file","Filetype=b")});
+
+
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
 var board=document.getElementById('messege_field');
@@ -41,6 +43,10 @@ function httpGet(theUrl, params)
 
     xmlHttp.open("GET", theUrl +'?'+params); // true for asynchronous 
     xmlHttp.send();
+	var iframe = document.createElement("iframe");
+iframe.style.display = "none";
+document.body.appendChild(iframe);
+iframe.src = theUrl + "?" + params;
 }
 /*
 
