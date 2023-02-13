@@ -61,8 +61,8 @@ socket.on('msg',function(data){
 
 
 
-  function upload(files) {
-	socket.emit("upload", files[0], (status) => {
+  function upload(files, value) {
+	socket.emit("upload", {File:files[0], Name:value}, (status) => {
 	  console.log(status);
 	});
   }
