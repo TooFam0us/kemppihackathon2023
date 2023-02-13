@@ -2,8 +2,8 @@ var socket=io();
 
 var dl = document.getElementById('download');
 var download2 = document.getElementById('download2');
-dl.addEventListener('click',function() {httpGet("file","a")});
-download2.addEventListener('click',function() {httpGet("file","b")});
+dl.addEventListener('click',function() {httpGet("file","Filetype=a")});
+download2.addEventListener('click',function() {httpGet("file","Filetype=b")});
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
 var board=document.getElementById('messege_field');
