@@ -22,9 +22,10 @@
 		</div>
 		
 		<input id="txtibnpu" > 
-		<button id="buddon">post</button>
+		<button id="buddon" >post</button>
 		<button id="deletekey">delete</button>
-		<input type="file" onchange="upload(this.files, this.value)" />
+		<button id="postFile" onclick="upload(this.files, alert)">Submit File</button>
+		<input type="file" id="fileInput" onchange="alertFilename()"/>
 
 </div>
 
@@ -33,6 +34,13 @@
 
 	<script src="/socket.io/socket.io.js"></script> 
 	<script src="client.js"></script>
+	<script>
+		    function alertFilename()
+            {
+                var thefile = document.getElementById('fileInput');
+                alert(thefile.value);
+            }
+	</script>
 </body>
 </html>
 
