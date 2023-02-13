@@ -10,9 +10,9 @@
 	
 	
 	
-	<div class="messege_board">
+	<div class="package_board">
 		
-		<div class="messege_area" id="msgarea">
+		<div class="package_area" id="packgarea">
 			
 			
 			<div id="packageField">
@@ -21,16 +21,17 @@
 			
 		</div>
 		
-		<button id="postFile" onclick="upload(thefile, strippedFile, document.getElementById('tuoteperhe').value)">Submit File</button>
-		<label for="category">Category:</label>
-
-		<select name="category" id="tuoteperhe">
-		  <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-		</select> 
 		<input type="file" id="fileInput" onchange="alertFilename(this.files)"/>
+		<label for="category">Category:</label>
+		
+		<select name="category" id="tuoteperhe">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select> 
+		<button id="postFile" onclick="upload(thefile, strippedFile, document.getElementById('tuoteperhe').value)">Submit File</button> 
+		<button id="deletefiles" onclick="deldata()">Delete all</button>
 
 </div>
 

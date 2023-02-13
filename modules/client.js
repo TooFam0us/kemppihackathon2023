@@ -25,12 +25,11 @@ function func(){
 	socket.emit('msg',txtinput.value);
 	txtinput.value="";
 }
-
+*/
 function deldata(){
 	socket.emit('delete','all');
-	board.innerHTML="";
 }
-
+/*
 
 socket.on('load',function(data){
 	console.log(data);
