@@ -1,0 +1,33 @@
+
+body{
+background:gray;
+color:white;
+}
+
+
+/* needs to sit still and not update aka fixed height*/
+.messege_board{
+background:dimgray;
+margin:0 auto;
+height:500px;
+width:40%;
+}
+
+/*contains only the messege field. should be able to scroll*/
+.messege_area{
+	height:100%;
+	width:100%;
+	overflow-y:scroll;
+
+}
+
+/*just contains the messeges*/
+#messege_field >p{
+margin:5px;
+
+}
+
+#txtibnpu{
+	width:100%;
+}
+
