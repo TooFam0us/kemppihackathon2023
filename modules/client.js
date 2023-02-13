@@ -3,7 +3,7 @@ var socket=io();
 var dl = document.getElementById('download');
 var download2 = document.getElementById('download2');
 dl.addEventListener('click',function() {httpGet("file","Filetype=a&Id=63ea5e18a2464ed1b87bdf6b")});
-download2.addEventListener('click',function() {httpGet("file","Filetype=b")});
+download2.addEventListener('click',function() {httpGet("file","Filetype=b&Id=63ea7fa64cf78b991d1ad822")});
 
 
 /*var inp=document.getElementById('buddon');
@@ -39,6 +39,10 @@ function deldata(){
 
 function httpGet(theUrl, params)
 {
+	let eul= theUrl+"?"+params;
+	window.open(eul);
+
+/*
     var xmlHttp = new XMLHttpRequest();
 
     xmlHttp.open("GET", theUrl +'?'+params); // true for asynchronous 
@@ -47,6 +51,8 @@ function httpGet(theUrl, params)
 iframe.style.display = "none";
 document.body.appendChild(iframe);
 iframe.src = theUrl + "?" + params;
+*/
+
 }
 /*
 

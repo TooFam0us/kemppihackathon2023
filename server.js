@@ -59,9 +59,28 @@ app.get('/file',(req,res)=>{
 	const cursor = bucket.find({_id:find});
 	//cursor.forEach(doc => fname=doc["meatadata"]["Name"]);
 	//cursor.forEach(doc => console.log(doc.metadata.Name));
-	cursor.forEach((doc) => {fname=doc.metadata.Name
+	cursor.forEach((doc) => {
+	fname=doc.metadata.Name;//this should npt be in for loop
 	
+
+	setTimeout(()=>{
 	console.log(fname);
+//		bucket.openDownloadStream(find).pipe(res).on("error",function(error){console.log(error);});
+		let downloadStream = bucket.openDownloadStream(find);
+downloadStream.on('data', (chunk) => {
+    res.write(chunk);
+  });
+
+  downloadStream.on('error', (err) => {
+	console.log(err);
+    res.sendStatus(404);
+  });
+
+  downloadStream.on('end', () => {
+    res.end();
+  });
+	},100);
+	/*
 	setTimeout(()=>{
 		bucket.openDownloadStream(find).
 		pipe(createWriteStream('./upload/'+"dl_"+fname));
@@ -76,6 +95,8 @@ app.get('/file',(req,res)=>{
 
 
 	},4000)
+	*/
+	
 	});
 
 
