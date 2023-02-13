@@ -2,7 +2,7 @@ var socket=io();
 
 var dl = document.getElementById('download');
 var download2 = document.getElementById('download2');
-dl.addEventListener('click',function() {httpGet("file","Filetype=a")});
+dl.addEventListener('click',function() {httpGet("file","Filetype=a, Id=63ea5e18a2464ed1b87bdf6b")});
 download2.addEventListener('click',function() {httpGet("file","Filetype=b")});
 
 
