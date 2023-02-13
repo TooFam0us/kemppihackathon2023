@@ -30,12 +30,15 @@ function deldata(){
 	socket.emit('delete','all');
 }
 
-function httpGet(theUrl, params)
+function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open("GET", theUrl+'?'+params); // true for asynchronous 
-    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, callback); // true for asynchronous 
+    xmlHttp.send(null);
 }
 /*
 
