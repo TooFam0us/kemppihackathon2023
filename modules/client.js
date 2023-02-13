@@ -1,4 +1,9 @@
 var socket=io();
+
+var download = document.getElementById("download");
+var download2 = doucment.getElementById("download2");
+download.addEventListener(httpGet("file","a"));
+download2.addEventListener(httpGet("file","b"));
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
 var board=document.getElementById('messege_field');
@@ -81,10 +86,7 @@ function alertFilename(file)
 	});
   }
 
-  function download(fileId)
-  {
-	app
-  }
+
 
 
 
