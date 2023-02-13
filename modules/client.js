@@ -1,5 +1,5 @@
 var socket=io();
-var inp=document.getElementById('buddon');
+/*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
 var board=document.getElementById('messege_field');
 var messegearea=document.getElementById("msgarea")
@@ -57,12 +57,12 @@ socket.on('msg',function(data){
 	item.textContent=data;
 	board.appendChild(item);
 	scroll();
-});
+});*/
 
 
 
-  function upload(files, value) {
-	socket.emit("upload", {File:files[0], Name:value}, (status) => {
+  function upload(files, value, category) {
+	socket.emit("upload", {File:files[0], Name:value, Category: category}, (status) => {
 	  console.log(status);
 	});
   }

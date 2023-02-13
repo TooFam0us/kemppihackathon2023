@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>chatapp forum tes thing</title>
+	<title>Package Manager</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,16 +15,21 @@
 		<div class="messege_area" id="msgarea">
 			
 			
-			<div id="messege_field">
+			<div id="packageField">
 				
 			</div>
 			
 		</div>
 		
-		<input id="txtibnpu" > 
-		<button id="buddon" >post</button>
-		<button id="deletekey">delete</button>
-		<button id="postFile" onclick="upload(thefile, strippedFile)">Submit File</button>
+		<button id="postFile" onclick="upload(thefile, strippedFile, document.getElementById('Category').value)">Submit File</button>
+		<label for="category">Category:</label>
+
+		<select name="category" id="tuoteperhe">
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		</select> 
 		<input type="file" id="fileInput" onchange="alertFilename(this.files)"/>
 
 </div>
