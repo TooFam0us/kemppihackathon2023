@@ -30,11 +30,11 @@ function deldata(){
 	socket.emit('delete','all');
 }
 
-function httpGet(theUrl)
+function httpGet(theUrl, params)
 {
     var xmlHttp = new XMLHttpRequest();
 
-    xmlHttp.open("GET", theUrl); // true for asynchronous 
+    xmlHttp.open("GET", theUrl+'?'+params); // true for asynchronous 
     xmlHttp.send();
 }
 /*
