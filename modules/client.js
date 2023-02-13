@@ -1,4 +1,3 @@
-var app = express();
 var socket=io();
 /*var inp=document.getElementById('buddon');
 var txtinput=document.getElementById('txtibnpu');
