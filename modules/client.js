@@ -37,7 +37,7 @@ function httpGetAsync(theUrl, params,callback)
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", theUrl, params); // true for asynchronous 
+    xmlHttp.open("GET", theUrl+"?"+ params); // true for asynchronous 
     xmlHttp.send(null);
 }
 /*
