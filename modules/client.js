@@ -34,7 +34,7 @@ function httpGet(theUrl, params)
 {
     var xmlHttp = new XMLHttpRequest();
 
-    xmlHttp.open("GET", theUrl+'?'+params); // true for asynchronous 
+    xmlHttp.open("GET", theUrl +'?'+params); // true for asynchronous 
     xmlHttp.send();
 }
 /*
