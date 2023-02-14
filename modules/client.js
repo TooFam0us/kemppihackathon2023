@@ -12,11 +12,12 @@ socket.on("load", (data) => {
 		document.getElementById("listDownload").appendChild(item);
 	});
 });
-var filterSel = document.getElementById("filterSelect");
-document.getElementById("filterSubmit").addEventListener('click',function(){filter(filterSel.value)});
 
-function filter(filterBy)
+document.getElementById("filterSubmit").addEventListener('click',function(){filter()});
+
+function filter()
 {
+	var filterBy = document.getElementById("filterSelect").value;
 	console.log("filtering" + filterBy);
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filterBy);
