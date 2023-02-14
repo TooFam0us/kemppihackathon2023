@@ -12,8 +12,8 @@ socket.on("load", (data) => {
 		document.getElementById("listDownload").appendChild(item);
 	});
 });
-
-document.getElementById("filterSubmit").addEventListener('click',filter(document.getElementById("filter").value));
+var filterSel = document.getElementById("filterSelect");
+document.getElementById("filterSubmit").addEventListener('click',filter(filterSel.value));
 
 function filter(filterBy)
 {
