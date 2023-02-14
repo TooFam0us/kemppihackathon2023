@@ -11,10 +11,10 @@ socket.on("load", (data) => {
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
-		column.append(name, category, date, button);
-		row.appendChild(column);
+		row.append(name, category, date, button);
 		row.id = "listDownloads";
-		document.getElementById("listDownload").appendChild(row)
+		column.appendChild(row);
+		document.getElementById("listDownload").appendChild(column)
 	});
 });
 
