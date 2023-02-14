@@ -102,7 +102,6 @@ async function main(){
 
 
 		socket.on('delete',(data)=>{
-			console.log("delete gets: ",data);
 			if (data=="all"){
 				const cursor = bucket.find({});
 				cursor.forEach(doc => bucket.delete(doc._id));
@@ -151,7 +150,6 @@ async function main(){
 
 			//console.log("after filtering the data is",FormattedFilter);
 
-			//let FormattedFilter={metadata:{Category:data}};
 
 			GetFilesWithFilters(FormattedFilter).then((db )=>{ console.log(db);io.emit('load',db); });
 		})
@@ -167,7 +165,7 @@ async function main(){
 
 
 	server.listen(PORT,()=>{
-		console.log('listening');
+		console.log('listening on port : ',PORT);
 	});
 
 }
