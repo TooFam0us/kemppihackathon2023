@@ -17,6 +17,7 @@ document.getElementById("filterSubmit").addEventListener('click',filter(filterSe
 
 function filter(filterBy)
 {
+	console.log("filtering");
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filterBy);
 }
