@@ -5,6 +5,9 @@ var download2 = document.getElementById('download2');
 dl.addEventListener('click',function() {httpGet("file","Filetype=a&Id=63ea5e18a2464ed1b87bdf6b")});
 download2.addEventListener('click',function() {httpGet("file","Filetype=b&Id=63ea7fa64cf78b991d1ad822")});
 
+socket.on("load", (data) => {
+	console.log(data);
+});
 
 function deldata(){
 	socket.emit('delete','all');
