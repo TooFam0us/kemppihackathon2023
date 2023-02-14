@@ -4,6 +4,11 @@ background:gray;
 color:white;
 }
 
+table{
+	margin:5%;
+	align-items: center;
+}
+
 th{
 	font-size: large;
 }
