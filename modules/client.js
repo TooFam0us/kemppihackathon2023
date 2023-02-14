@@ -12,7 +12,7 @@ socket.on("load", (data) => {
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
-		column.append(name, category, date, button);
+		column.append(name, category, fileType, date, button);
 		row.id = "listDownloads";
 		row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
