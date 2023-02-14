@@ -19,9 +19,9 @@ function filter()
 {
 	var filterSel = document.getElementById("filtteri").value;
 	var filterSel2 = document.getElementById("filtteri2").value;
-	var filterBy = {Category:filterSel, Extention:filterSel2};
+	let filter = {"Category":+filterSel, "Extention":+filterSel2};
 	document.getElementById("listDownload").replaceChildren();
-	socket.emit("getWithFilter",filterBy);
+	socket.emit("getWithFilter",filter);
 }
 
 function deldata(){
