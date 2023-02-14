@@ -4,7 +4,7 @@ var socket=io();
 socket.on("load", (data) => {
 	data.forEach(p => {
 		var row = document.createElement("tr"); 
-		var column = document.createElement("td");
+		//var column = document.createElement("td");
 		var name = document.createElement("td");
 		name.innerHTML = p.filename;
 		var category = document.createElement("td");
@@ -15,11 +15,15 @@ socket.on("load", (data) => {
 		date.innerHTML = p.uploadDate;
 		var buttonData = document.createElement("td");
 		var button = document.createElement("button");
-		
 		buttonData.innerHTML= "Download";
 		buttonData.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
 		button.appendChild(buttonData);
-		row.append(name, category, fileType, date, button);
+		var buttonData2 = document.createElement("td");
+		var button2 = document.createElement("button");
+		buttonData2.innerHTML= "Delete";
+		buttonData2.addEventListener('click', function() {deleteObj(p._id)});
+		button.appendChild(buttonData2);
+		row.append(name, category, fileType, date, button,button2);
 		row.className = "listDownloads";
 		//row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
@@ -47,6 +51,11 @@ function httpGet(theUrl, params)
 {
 	let eul= theUrl+"?"+params;
 	window.open(eul);
+}
+
+function deleteObj(theUrl, params)
+{
+	socket.emit('delete', params);
 }
 
 let strippedFile;
