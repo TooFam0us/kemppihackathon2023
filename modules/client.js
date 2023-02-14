@@ -3,7 +3,8 @@ var socket=io();
 
 socket.on("load", (data) => {
 	data.forEach(p => {
-		var item = document.createElement("<li>DownloadableFile1<button id='download'>Download</button></li>");
+		var item = document.createElement("li");
+		item.innerHTML="DownloadableFile1<button id='download'>Download</button>";
 		item.addEventListener('click', function() {httpGet("file","Id="+p._id)});
 		document.getElementById("listDownload").appendChild(item);
 	});
