@@ -5,7 +5,8 @@ color:white;
 }
 
 table{
-	margin:5%;
+	margin:100px;
+
 	align-items: center;
 }
 
@@ -14,7 +15,7 @@ th{
 }
 
 td{
-	margin: 20px;
+	margin: 100px;
 	align-items: center;
 }
 
