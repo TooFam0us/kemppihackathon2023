@@ -13,6 +13,7 @@ socket.on("load", (data) => {
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
 		column.appendChild(name, category, date, button);
 		row.appendChild(column);
+		row.id = "listDownloads";
 	});
 });
 
@@ -53,7 +54,7 @@ function upload(files, value, category)
 	socket.emit("upload", {File:files[0], Name:value, Category: category}, (status) => {
 	  console.log(status);
 	});
-	document.getElementById("listDownload").replaceChildren();
+	document.getElementById("listDownloads").forEach(p =>{replaceChildren()});
 	socket.emit("getData");
 
 	
