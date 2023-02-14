@@ -23,7 +23,7 @@ socket.on("load", (data) => {
 		buttonData2.innerHTML= "Delete";
 		buttonData2.addEventListener('click', function() {deleteObj(p._id)});
 		button2.appendChild(buttonData2);
-		row.append(name, category, fileType, date, button,button2);
+		row.append(name, category, fileType, date, button, button2);
 		row.className = "listDownloads";
 		//row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
