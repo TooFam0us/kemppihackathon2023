@@ -6,179 +6,167 @@ const server= http.createServer(app);
 const {Server}=require("socket.io");
 const io =new Server(server,{maxHttpBufferSize:1e9});
 const {MongoClient,GridFSBucket, ObjectId } = require('mongodb');
-
-const { writeFile,createReadStream , createWriteStream} =require("fs");
-const { log } = require('console');
-
-//app.use(express.urlencoded({extended:false,limit:'2gb'}));
+const { Readable } = require('stream');
 
 
 
-const url ='mongodb://127.0.0.1:27017'
-const client= new MongoClient(url)
 const dbname='chat';
+const mongodbUrl ='mongodb://127.0.0.1:27017'
+const PORT = 3000;
 
 
+const client= new MongoClient(mongodbUrl);
 app.use(express.static('modules'))
-app.use(express.static('upload'))
 
+
+
+
+
+
+
+
+// Get Request handler to serve index page
 app.get('/',(req,res)=>{
 	res.sendFile(__dirname+'/index.html');
 });
 
 
 
-
-
 async function main(){
 
 	await client.connect();
-	console.log('mongo connection');
+	console.log('mongo db has connected');
 	const db =client.db(dbname);
 	const collection=db.collection('documents');
 	const bucket = new GridFSBucket(db,{bucketName:'FileBucket' });
-
-
-//	const res =await collection.find({}).toArray();
-//	console.log(res)
-
-	async function get_data(){
-		const res =await collection.find({}).toArray();
-		return res;
-	}
-
-
-app.get('/file',(req,res)=>{
-	console.log(req.query);
-	let fileId=req.query["Id"];
-	//console.log(fileId);
-
-	let find =new ObjectId(fileId)
-
-	let fname;
-	const cursor = bucket.find({_id:find});
-	//cursor.forEach(doc => fname=doc["meatadata"]["Name"]);
-	//cursor.forEach(doc => console.log(doc.metadata.Name));
-	cursor.forEach((doc) => {
-	fname=doc.metadata.Name;//this should npt be in for loop
 	
 
-	setTimeout(()=>{
-	console.log(fname);
-//		bucket.openDownloadStream(find).pipe(res).on("error",function(error){console.log(error);});
-		let downloadStream = bucket.openDownloadStream(find);
-downloadStream.on('data', (chunk) => {
-    res.write(chunk);
-  });
 
-  downloadStream.on('error', (err) => {
-	console.log(err);
-    res.sendStatus(404);
-  });
-
-  downloadStream.on('end', () => {
-    res.end();
-  });
-	},100);
-	/*
-	setTimeout(()=>{
-		bucket.openDownloadStream(find).
-		pipe(createWriteStream('./upload/'+"dl_"+fname));
+	const cursor = bucket.find({}); 
+	//cursor.forEach((doc) => {console.log(doc);})
 
 
-	setTimeout(()=>{
 
-		res.download('./upload/'+"dl_"+fname);
-		console.log("timeoutover");
+	//Get Handler for File Download
+	app.get('/file',(req,res)=>{
+		console.log(req.query);
+		let fileId=req.query["Id"];
 
-	},1000)
+		let find =new ObjectId(fileId)
 
+		let fname;
+		const cursor = bucket.find({_id:find});
+		cursor.forEach((doc) => {
+			fname=doc.filename;//this should npt be in for loop
 
-	},4000)
-	*/
-	
+			setTimeout(()=>{
+				res.header('Content-Disposition', 'attachment; filename='+fname);
+				bucket.openDownloadStream(find).pipe(res).on("error",function(error){console.log(error);});
+			},100);
+		});
 	});
 
 
 
 
+	//filter is what we need to find
+	//sorter is the order that we want to find it in
+	async function GetFilesWithFilters(filter){
 
-	/*
-	let fpath=`${__dirname}/upload/jklö.jpg`;
-	console.log(req.query["Filetype"]);
-	console.log(req.query);
-	console.log(req.url);
+		//let ext=filter.metadata.Extention;
+		
 
-	if(req.query.Filetype=='a'){
-		res.download(fpath,"customfilenam,e.jpg");
+		//filter is {} that should look like an obj
+		//this filter SHOULD NOT HAVE the _id field
+		const cursor = bucket.find(filter);
+		//{"metadata.Category":"category"} values of keys should be strings
+
+
+		return cursor.map(function(doc){return doc}).toArray();
 	}
-			
-	if(req.query.Filetype=='b'){
-		const rs=createReadStream("./upload/jklö.zip");
-		res.setHeader('Content-Type', 'attachment;');
-        res.setHeader('Content-Disposition', 'inline; filename="gamne.zip"');
-		rs.pipe(res);
 
+
+	//returns all data from db 
+	async function GetAllBDData(){
+		const cursor = bucket.find({});
+		return cursor.map(function(doc){return doc}).toArray();
 	}
-	*/
 
-});
+
+
 
 
 	io.on('connection',(socket)=>{
-	get_data().then(function(history){
-	socket.emit('load',history);
-	});
+		//this executes on connection to the server
+		GetAllBDData().then((db )=>{ socket.emit('load',db); });
 
-		socket.on('msg',(data)=>{
-			collection.insertOne({messege:data});
-			io.emit('msg',data);
-		});
 
 		socket.on('delete',(data)=>{
-			const cursor = bucket.find({});
+			console.log("delete gets: ",data);
+			if (data=="all"){
+				const cursor = bucket.find({});
+				cursor.forEach(doc => bucket.delete(doc._id));
+				return
+			}
+
+			let fileId=data;
+			let find =new ObjectId(fileId)
+			const cursor = bucket.find({_id:find});
 			cursor.forEach(doc => bucket.delete(doc._id));
-			//cursor.forEach(doc => console.log(doc));
-			//cursor.forEach(doc => console.log(doc._id));
-			});
 
+		});
+
+
+
+		//Uploads file from the client to the servers database
 		socket.on("upload", (fileData, callback) => {
-			console.log(fileData); // <Buffer 25 50 44 ...>
+			//console.log(fileData); // <Buffer 25 50 44 ...>
 
+			var fileExt = fileData.Name.split('.').pop();
 
-
-
-			writeFile("./upload/j_"+fileData["Name"], fileData["File"], (err) => {
-				console.log(err);
-				callback({ message: err ? "failure" : "success" });
-			});
-
-			createReadStream('./upload/j_'+fileData["Name"]).
-				pipe(bucket.openUploadStream(fileData["Name"], {
+			const stream = Readable.from(fileData.File);
+			stream.pipe(bucket.openUploadStream(fileData["Name"], {
 				chunkSizeBytes: 1048576,
-				metadata: { Category: fileData["Category"],Name:fileData["Name"]  }
+
+				metadata: { Category: fileData["Category"], Extention : fileExt  }
 			}))
 		});
 
 
-		/*
-			createReadStream('./upload/jklö.jpg').
-				pipe(bucket.openUploadStream('jklö', {
-				chunkSizeBytes: 1048576,
-				metadata: { field: 'jklö', value: 'test somethign' }
-     }))
-		*/
 
 
+		socket.on('getWithFilter',(data)=>{
+			//change this to loop
+			//if the entry is 0 remove it from the obj
+
+			let FormattedFilter=data;
+			//if the cat is 0 delete the entire thing from the obj.
+			//if we search with the cat as 0 it will try to find one
+			if(data["metadata.Category"]=='0'){
+				delete FormattedFilter["metadata.Category"];
+			}
+			if (data["metadata.Extention"]=='0'){
+				delete FormattedFilter["metadata.Extention"];
+			}
+
+			//console.log("after filtering the data is",FormattedFilter);
+
+			//let FormattedFilter={metadata:{Category:data}};
+
+			GetFilesWithFilters(FormattedFilter).then((db )=>{ console.log(db);io.emit('load',db); });
+		})
+
+		//returns all data from the db
+		socket.on('getData',(data)=>{
+			GetAllBDData().then((db )=>{ io.emit('load',db); });
+		})
 
 
 		//connection end
 	});
 
 
-
-
-	server.listen(3000,()=>{
+	server.listen(PORT,()=>{
 		console.log('listening');
 	});
 
