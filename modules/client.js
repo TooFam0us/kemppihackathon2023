@@ -20,7 +20,7 @@ function filter()
 	var filterSel = document.getElementById("filtteri").value;
 	var filterSel2 = document.getElementById("filtteri2").value;
 	console.log(filterSel2);
-	let filter = {"metaData.Category":+filterSel, "metaData.Extention":+filterSel2.ToString()};
+	let filter = {"metaData.Category":+filterSel, "metaData.Extention":+filterSel2.toString()};
 	console.log(filter);
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filter);
