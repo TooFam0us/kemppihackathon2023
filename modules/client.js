@@ -10,7 +10,7 @@ socket.on("load", (data) => {
 		var date = document.createTextNode(p.uploadDate);
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
-		button.addEventListerner('click', function() {httpGet("file", "Id="+p._id)});
+		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
 		column.appendChild(name, category, date, button);
 		row.appendChild(column);
 	});
