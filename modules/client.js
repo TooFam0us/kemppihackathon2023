@@ -52,8 +52,10 @@ function alertFilename(file)
 
 function getRidOfChildren()
 {
-	if(document.getElementsByClassName("listDownloads").length > 0)
-		document.getElementsByClassName("listDownloads").map(n => n && n.remove());
+    const elements = document.getElementsByClassName("listDownloads");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
 }
 
 
