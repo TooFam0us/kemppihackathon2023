@@ -50,7 +50,8 @@ function alertFilename(file)
 
 function getRidOfChildren()
 {
-	document.getElementById("listDownloads").forEach(p =>{replaceChildren()});
+	if(document.getElementById("listDownloads") && document.getElementById("listDownloads").childElementCount > 0)
+		document.getElementById("listDownloads").forEach(p =>{replaceChildren()});
 }
 
 
