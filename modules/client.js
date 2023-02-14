@@ -7,6 +7,7 @@ socket.on("load", (data) => {
 		var column = document.createElement("td");
 		var name = document.createTextNode(p.filename);
 		var category = document.createTextNode(p.metadata.Category);
+		var fileType = document.createTextNode(p.metadata.Extention);
 		var date = document.createTextNode(p.uploadDate);
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
