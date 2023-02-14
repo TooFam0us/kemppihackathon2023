@@ -53,7 +53,7 @@ function httpGet(theUrl, params)
 	window.open(eul);
 }
 
-function deleteObj(theUrl, params)
+function deleteObj (params)
 {
 	socket.emit('delete', params);
 }
