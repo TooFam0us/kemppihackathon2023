@@ -10,10 +10,6 @@ socket.on("load", (data) => {
 	});
 });
 
-// download2.addEventListener('click',function() {httpGet("file","Filetype=b&Id=63ea7fa64cf78b991d1ad822")});
-// dl.addEventListener('click',function() {httpGet("file","Filetype=a&Id=63ea5e18a2464ed1b87bdf6b")});
-// var download2 = document.getElementById('download2');
-// var dl = document.getElementById('download');
 
 function deldata(){
 	socket.emit('delete','all');
@@ -39,6 +35,10 @@ function upload(files, value, category)
 	socket.emit("upload", {File:files[0], Name:value, Category: category}, (status) => {
 	  console.log(status);
 	});
+	document.getElementById("listDownload").replaceChildren();
+	socket.emit("getData");
+
+	
   }
 
 
