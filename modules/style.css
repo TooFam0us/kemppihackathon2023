@@ -4,6 +4,15 @@ background:gray;
 color:white;
 }
 
+th{
+	font-size: large;
+}
+
+td{
+	margin: 20px;
+	align-items: center;
+}
+
 .grid-container {
 	display: grid;
 	column-gap: 50px;
