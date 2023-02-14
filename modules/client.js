@@ -5,16 +5,23 @@ socket.on("load", (data) => {
 	data.forEach(p => {
 		var row = document.createElement("tr"); 
 		var column = document.createElement("td");
-		var name = document.createTextNode(p.filename);
-		var category = document.createTextNode(p.metadata.Category);
-		var fileType = document.createTextNode(p.metadata.Extention);
-		var date = document.createTextNode(p.uploadDate);
+		var name = document.createElement("td");
+		name.innerHTML = p.filename;
+		var category = document.createElement("td");
+		category.innerHTML = p.metadata.Category;
+		var fileType = document.createElement("td");
+		fileType.innerHTML = p.metadata.Extention;
+		var date = document.createElement("td");
+		date.innerHTML = p.uploadDate;
+		var buttonData = document.createElement("td");
 		var button = document.createElement("button");
-		button.innerHTML= "Download";
-		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
-		column.append(name, category, fileType, date, button);
+		
+		buttonData.innerHTML= "Download";
+		buttonData.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
+		button.appendChild(buttonData);
+		row.append(name, category, fileType, date, button);
 		row.className = "listDownloads";
-		row.appendChild(column);
+		//row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
 	});
 });
