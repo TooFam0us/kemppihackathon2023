@@ -1,14 +1,14 @@
 var socket=io();
 
 
-const arrData = socket.on("load", (data) => {
-	console.log(data);
+socket.on("load", (data) => {
+	data.forEach(p => {
+		var item = document.createElement("<li>DownloadableFile1<button id='download'>Download</button></li>");
+		item.addEventListener('click', function() {httpGet("file","Id="+p._id)});
+		document.getElementById("listDownload").appendChild(item);
+	});
 });
-arrData.forEach(data => {
-	var item = document.createElement("<li>DownloadableFile1<button id='download'>Download</button></li>");
-	item.addEventListener('click', function() {httpGet("file","Id="+data._id)});
-	document.getElementById("listDownload").appendChild(item);
-});
+
 // download2.addEventListener('click',function() {httpGet("file","Filetype=b&Id=63ea7fa64cf78b991d1ad822")});
 // dl.addEventListener('click',function() {httpGet("file","Filetype=a&Id=63ea5e18a2464ed1b87bdf6b")});
 // var download2 = document.getElementById('download2');
