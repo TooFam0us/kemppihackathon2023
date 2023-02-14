@@ -11,8 +11,8 @@ socket.on("load", (data) => {
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
-		column.appendChild(name, category, date, button);
-		row.appendChild(column);
+		row.appendChild(name, category, date, button);
+		column.appendChild(row);
 		row.id = "listDownloads";
 		document.getElementById("listDownload").appendChild(row);
 	});
