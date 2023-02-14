@@ -21,6 +21,23 @@ width:40%;
 
 }
 
+#packgarea{
+	height: 100%;
+	width: 50%;
+	position: relative;
+}
+#uploadField{
+	height: 100%;
+	width: 50%;
+	position: relative;
+}
+
+#listDownload{
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0; /* Remove margins */
+}
+
 /*just contains the messeges*/
 #messege_field >p{
 margin:5px;

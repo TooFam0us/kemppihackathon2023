@@ -16,24 +16,32 @@
 			
 			
 			<div id="packageField">
-				
+				<ul id="listDownload">
+					<li>DownloadableFile1
+					<button id="download">Download</button></li>
+					<li>DownloadableFile2
+					<button id="download2">Download</button></li>
+				</ul>
 			</div>
 			
 		</div>
+
+		<div id="uploadField">
+			<input type="file" id="fileInput" onchange="alertFilename(this.files)"/>
+			<label for="category">Category:</label>
+			
+			<select name="category" id="tuoteperhe">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">41</option>
+			</select> 
+			<button id="postFile" onclick="upload(thefile, strippedFile, document.getElementById('tuoteperhe').value)">Submit File</button> 
+			<button id="deletefiles" onclick="deldata()">Delete all</button>
+		</div>
 		
-		<input type="file" id="fileInput" onchange="alertFilename(this.files)"/>
-		<label for="category">Category:</label>
-		
-		<select name="category" id="tuoteperhe">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">41</option>
-		</select> 
-		<button id="postFile" onclick="upload(thefile, strippedFile, document.getElementById('tuoteperhe').value)">Submit File</button> 
-		<button id="deletefiles" onclick="deldata()">Delete all</button>
-		<button id="download">Download</button>
-		<button id="download2">Download2</button>
+
+
 		
 		
 	</div>
