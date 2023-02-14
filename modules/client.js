@@ -14,6 +14,7 @@ socket.on("load", (data) => {
 		column.appendChild(name, category, date, button);
 		row.appendChild(column);
 		row.id = "listDownloads";
+		document.getElementById("listDownload").appendChild(row);
 	});
 });
 
