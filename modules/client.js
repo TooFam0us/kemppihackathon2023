@@ -53,7 +53,7 @@ function alertFilename(file)
 function getRidOfChildren()
 {
 	if(document.getElementsByClassName("listDownloads").length > 0)
-		document.getElementsByClassName("listDownloads").remove();
+		document.getElementsByClassName("listDownloads").map(n => n && n.remove());
 }
 
 
