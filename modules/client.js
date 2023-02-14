@@ -26,7 +26,7 @@ function filter()
 	var filterSel = document.getElementById("filtteri").value;
 	var filterSel2 = document.getElementById("filtteri2").value;
 	console.log(filterSel2);
-	let filter = {"metaData.Category":filterSel.toString(), "metaData.Extention":filterSel2.toString()};
+	let filter = {"metadata.Category":filterSel.toString(), "metadata.Extention":filterSel2.toString()};
 	console.log(filter);
 	getRidOfChildren();
 	socket.emit("getWithFilter",filter);
