@@ -5,9 +5,8 @@ color:white;
 }
 
 table{
-	margin:100px;
-
-	align-items: center;
+	margin:20px;
+	padding: 20px;
 }
 
 th{
@@ -15,23 +14,14 @@ th{
 }
 
 td{
-	margin: 100px;
 	align-items: center;
 }
-
-.grid-container {
-	display: grid;
-	column-gap: 50px;
-  }
-
-
-/* needs to sit still and not update aka fixed height*/
 
 
 
 #listDownload{
-	padding: 20; /* Remove padding */
-	margin: 10; /* Remove margins */
+	padding: 20; 
+	margin: 10; 
 }
 
 
