@@ -13,6 +13,12 @@ socket.on("load", (data) => {
 	});
 });
 
+document.getElementById("filterSubmit").addEventListener('click',filter(document.getElementById("filter").value));
+
+function filter(filterBy)
+{
+	socket.emit("getWithFilter",filterBy);
+}
 
 function deldata(){
 	socket.emit('delete','all');
