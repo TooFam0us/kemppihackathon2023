@@ -5,7 +5,7 @@ socket.on("load", (data) => {
 	data.forEach(p => {
 		var item = document.createElement("li");
 		item.innerHTML=p.filename+"<button id='download'>Download</button>";
-		item.addEventListener('click', function() {httpGet("file","Id="+p._id)});
+		item.getElementById('download').addEventListener('click', function() {httpGet("file","Id="+p._id)});
 		document.getElementById("listDownload").appendChild(item);
 	});
 });
