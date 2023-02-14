@@ -15,7 +15,7 @@ socket.on("load", (data) => {
 var filterSel = document.getElementById("filtteri");
 document.getElementById("filterSubmit").addEventListener('click',function(){filter(filterSel.value)});
 
-function filter()
+function filter(filterBy)
 {
 	console.log("filtering" + filterBy);
 	document.getElementById("listDownload").replaceChildren();
