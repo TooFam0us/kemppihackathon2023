@@ -26,7 +26,7 @@ function filter()
 	console.log(filterSel2);
 	let filter = {"metaData.Category":+filterSel, "metaData.Extention":filterSel2.toString()};
 	console.log(filter);
-	document.getElementById("listDownload").replaceChildren();
+	getRidOfChildren();
 	socket.emit("getWithFilter",filter);
 }
 
@@ -48,13 +48,18 @@ function alertFilename(file)
 	strippedFile = document.getElementById("fileInput").value.replace('C:\\fakepath\\', ' ');
 }
 
+function getRidOfChildren()
+{
+	document.getElementById("listDownloads").forEach(p =>{replaceChildren()});
+}
+
 
 function upload(files, value, category) 
 {
 	socket.emit("upload", {File:files[0], Name:value, Category: category}, (status) => {
 	  console.log(status);
 	});
-	document.getElementById("listDownloads").forEach(p =>{replaceChildren()});
+	getRidOfChildren();
 	socket.emit("getData");
 
 	
