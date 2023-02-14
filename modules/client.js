@@ -13,7 +13,7 @@ socket.on("load", (data) => {
 	});
 });
 var filterSel = document.getElementById("filterSelect");
-document.getElementById("filterSubmit").addEventListener('click',filter(filterSel.value));
+document.getElementById("filterSubmit").addEventListener('click',function(){filter(filterSel.value)});
 
 function filter(filterBy)
 {
