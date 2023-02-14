@@ -17,9 +17,9 @@ document.getElementById("filterSubmit").addEventListener('click',function(){filt
 
 function filter()
 {
-	var filterSel = "Category:"+document.getElementById("filtteri").value;
-	var filterSel2 = "Extention:"+document.getElementById("filtteri2").value;
-	var filterBy = {filterSel, filterSel2};
+	var filterSel = document.getElementById("filtteri").value;
+	var filterSel2 = document.getElementById("filtteri2").value;
+	var filterBy = {Category:filterSel, Extention:filterSel2};
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filterBy);
 }
