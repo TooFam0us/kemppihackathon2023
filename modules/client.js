@@ -45,6 +45,8 @@ function filter()
 
 function deldata(){
 	socket.emit('delete','all');
+	getRidOfChildren();
+	socket.emit("getData");
 }
 
 function httpGet(theUrl, params)
@@ -56,6 +58,8 @@ function httpGet(theUrl, params)
 function deleteObj (params)
 {
 	socket.emit('delete', params);
+	getRidOfChildren();
+	socket.emit("getData");
 }
 
 let strippedFile;
