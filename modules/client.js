@@ -3,13 +3,16 @@ var socket=io();
 
 socket.on("load", (data) => {
 	data.forEach(p => {
-		var item = document.createElement("li");
-		item.innerHTML=p.filename+"	"+p.Category+" "+p.uploadDate;
+		var row = document.createElement("tr"); 
+		var column = document.createElement("td");
+		var name = document.createTextNode(p.filename);
+		var category = document.createTextNode(p.metadata.Category);
+		var date = document.createTextNode(p.uploadDate);
 		var button = document.createElement("button");
 		button.innerHTML= "Download";
-		button.addEventListener('click', function() {httpGet("file","Id="+p._id)});
-		item.appendChild(button);
-		document.getElementById("listDownload").appendChild(item);
+		button.addEventListerner('click', function() {httpGet("file", "Id="+p._id)});
+		column.appendChild(name, category, date, button);
+		row.appendChild(column);
 	});
 });
 
@@ -20,7 +23,7 @@ function filter()
 	var filterSel = document.getElementById("filtteri").value;
 	var filterSel2 = document.getElementById("filtteri2").value;
 	console.log(filterSel2);
-	let filter = {"metaData.Category":+filterSel, "metaData.Extention":+filterSel2.toString()};
+	let filter = {"metaData.Category":+filterSel, "metaData.Extention":filterSel2.toString()};
 	console.log(filter);
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filter);
