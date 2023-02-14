@@ -13,7 +13,7 @@ socket.on("load", (data) => {
 		button.innerHTML= "Download";
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
 		column.append(name, category, fileType, date, button);
-		row.id = "listDownloads";
+		row.class = "listDownloads";
 		row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
 	});
@@ -52,8 +52,8 @@ function alertFilename(file)
 
 function getRidOfChildren()
 {
-	if(document.getElementById("listDownloads"))
-		document.getElementById("listDownloads").remove();
+	if(document.getElementByClass("listDownloads"))
+		document.getElementsByClass("listDownloads").remove();
 }
 
 
