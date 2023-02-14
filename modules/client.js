@@ -52,7 +52,7 @@ function alertFilename(file)
 
 function getRidOfChildren()
 {
-	if(document.getElementByClassName("listDownloads"))
+	if(document.getElementsByClassName("listDownloads").length > 0)
 		document.getElementsByClassName("listDownloads").remove();
 }
 
