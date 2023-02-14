@@ -13,7 +13,7 @@ socket.on("load", (data) => {
 		button.innerHTML= "Download";
 		button.addEventListener('click', function() {httpGet("file", "Id="+p._id)});
 		column.append(name, category, fileType, date, button);
-		row.class = "listDownloads";
+		row.className = "listDownloads";
 		row.appendChild(column);
 		document.getElementById("listDownload").appendChild(row)
 	});
