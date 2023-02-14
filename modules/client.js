@@ -52,8 +52,8 @@ function alertFilename(file)
 
 function getRidOfChildren()
 {
-	if(document.getElementByClass("listDownloads"))
-		document.getElementsByClass("listDownloads").remove();
+	if(document.getElementByClassName("listDownloads"))
+		document.getElementsByClassName("listDownloads").remove();
 }
 
 
