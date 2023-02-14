@@ -10,11 +10,11 @@
 	
 	<script src="/socket.io/socket.io.js"></script> 
 	
-	<div class="package_board">
-		<div id="Item_Types">
+	<div class="grid-container">
+		<div class ="grid-item1">
 			Name	Category	Type	Uploaded	Download
 		</div>
-		<div class="package_area" id="packgarea">
+		<div class="grid-item2" id="packgarea">
 			
 			
 			<div id="packageField">
@@ -25,7 +25,7 @@
 			
 		</div>
 
-		<div id="uploadField">
+		<div class="grid-item3">
 			<input type="file" id="fileInput" onchange="alertFilename(this.files)"/>
 			<label for="category">Category:</label>
 			
@@ -40,10 +40,11 @@
 		</div>
 
 
-		<div id="filters">
+		<div class="grid-item4" id="filters">
 			<label for="filter" id="filterSelect">Filter by category:</label>
 
 			<select name="filter" id="filtteri">
+				<option value="0">None</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -51,6 +52,21 @@
 			</select>
 
 			<button id="filterSubmit">Submit filter</button>
+<div class="grid-item5" id="filters2">
+
+	<label for="filterByType" id="filterSelect">Filter by file type:</label>
+	
+	<select name="filterByType" id="filtteri2">
+		<option value="0">None</option>
+		<option value="zip">zip</option>
+		<option value="jpg">jpg</option>
+		<option value="png">png</option>
+		<option value="pdf">pdf</option>
+		<option value="exe">exe</option>
+	</select>
+
+</div>
+
 
 		</div>
 		

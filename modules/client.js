@@ -12,12 +12,14 @@ socket.on("load", (data) => {
 		document.getElementById("listDownload").appendChild(item);
 	});
 });
-var filterSel = document.getElementById("filtteri");
-document.getElementById("filterSubmit").addEventListener('click',function(){filter(filterSel.value)});
 
-function filter(filterBy)
+document.getElementById("filterSubmit").addEventListener('click',function(){filter()});
+
+function filter()
 {
-	console.log("filtering" + filterBy);
+	var filterSel = "Category:"+document.getElementById("filtteri").value;
+	var filterSel2 = "Extention:"+document.getElementById("filtteri2").value;
+	var filterBy = {filterSel, filterSel2};
 	document.getElementById("listDownload").replaceChildren();
 	socket.emit("getWithFilter",filterBy);
 }

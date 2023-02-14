@@ -4,6 +4,11 @@ background:gray;
 color:white;
 }
 
+.grid-container {
+	display: grid;
+	column-gap: 50px;
+  }
+
 
 /* needs to sit still and not update aka fixed height*/
 .messege_board{
